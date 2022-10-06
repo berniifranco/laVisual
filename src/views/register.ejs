@@ -51,7 +51,7 @@
         </div>
         <div class="col-12">
           <label for="image" class="form-label">Foto de perfil</label>
-          <input type="file" class="form-control" name="image" id="image" placeholder="B">
+          <input type="file" class="form-control" name="image" id="image" accept="image/*">
           <% if (locals.errors && errors.image) { %>
             <h5 style="color: red ;">
               <%= errors.image.msg %>
@@ -81,6 +81,10 @@
           <select name="pais" id="pais" class="form-select">
             <option>Elige...</option>
             <option>Argentina</option>
+            <option>Brasil</option>
+            <option>Uruguay</option>
+            <option>Paraguay</option>
+            <option>Bolivia</option>
           </select>
           <% if (locals.errors && errors.pais) { %>
             <h5 style="color: red ;">
