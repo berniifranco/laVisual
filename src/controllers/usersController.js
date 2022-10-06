@@ -16,28 +16,43 @@ const controller = {
     processRegister: (req, res) => {
         let idUser = (users[users.length-1].id)+1;
         let datos = req.body;
+        let mailDuplicado = null;
         let errors = validationResult(req);
 
         if (errors.isEmpty()) {
-            let nuevoUser = {
-                "id": idUser,
-                "email": datos.email,
-                "pass": bcrypt.hashSync(datos.pass),
-                "name": datos.name,
-                "direccion": datos.direccion,
-                "piso": datos.piso,
-                "departamento": datos.departamento,
-                "image:": req.file.filename,
-                "ciudad": datos.ciudad,
-                "provincia": datos.provincia,
-                "pais": datos.pais
+            for (let o of users) {
+                if (datos.email == o.email) {
+                    mailDuplicado = o;
+                    res.render('register', { errormail: {
+                        mail: {
+                            msg: 'El E-Mail ya está registrado'
+                        }
+                    } });
+                    break;
+                }
             };
 
-            users.push(nuevoUser);
-
-            fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 4), 'utf-8');
-
-            res.redirect('/');
+            if (mailDuplicado == null) {
+                let nuevoUser = {
+                    "id": idUser,
+                    "email": datos.email,
+                    "pass": bcrypt.hashSync(datos.pass),
+                    "name": datos.name,
+                    "direccion": datos.direccion,
+                    "piso": datos.piso,
+                    "departamento": datos.departamento,
+                    "image:": req.file.filename,
+                    "ciudad": datos.ciudad,
+                    "provincia": datos.provincia,
+                    "pais": datos.pais
+                };
+    
+                users.push(nuevoUser);
+    
+                fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 4), 'utf-8');
+    
+                res.redirect('/');
+            }
 
         } else {
             res.render('register', { errors: errors.mapped(), oldData: datos })
