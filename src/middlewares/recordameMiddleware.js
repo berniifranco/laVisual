@@ -9,7 +9,7 @@ function recordameMiddleware (req, res, next) {
         let usuarioALoguearse;
 
         for (let o of users) {
-            if (req.cookie.recordame == o.email) {
+            if (req.cookies.recordame == o.email) {
                 usuarioALoguearse = o;
                 break;
             }

@@ -5,6 +5,7 @@ const { body } = require('express-validator');
 const upload = require('../middlewares/multerUserMiddleware');
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
+const logueadoMiddleware = require('../middlewares/logueadoMiddleware');
 
 /*** VALIDACIONES REGISTRO ***/
 const validacionesRegistro = [
@@ -33,7 +34,7 @@ const validacionesRegistro = [
     })
 ];
 
-let validacionesLogi = [
+let validacionesLogin = [
     body('email').notEmpty().withMessage('El campo E-Mail no debe estar vacío').isEmail().withMessage('El formato de E-Mail es inválido'),
     body('pass').notEmpty().withMessage('El campo Contraseña no debe estar vacío')
 ];
@@ -46,8 +47,8 @@ router.get('/', usersController.index);
 router.get('/register', guestMiddleware, usersController.register);
 router.post('/register', upload.single('image'), validacionesRegistro, usersController.processRegister);
 
-router.get('/login', usersController.login);
-router.post('/login', validacionesLogi, usersController.processLogin);
+router.get('/login', logueadoMiddleware, usersController.login);
+router.post('/login', validacionesLogin, usersController.processLogin);
 
 router.get('/logout', authMiddleware, usersController.logout);
 

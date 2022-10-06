@@ -11,5 +11,18 @@
         "ciudad": "CABA",
         "provincia": "CABA",
         "pais": "Argentina"
+    },
+    {
+        "id": 2,
+        "email": "familia@franco.com",
+        "pass": "$2a$10$uc5U0k4AxjzxpQzL0AKgC.m.Vp0FqmGaRjr4Gmi1IaZMeKWmPgkce",
+        "name": "Familia Franco",
+        "direccion": "Aristóbulo del Valle 1553",
+        "piso": "",
+        "departamento": "",
+        "image:": "user-1665022891839.jpeg",
+        "ciudad": "Florencio Varela",
+        "provincia": "Buenos Aires",
+        "pais": "Argentina"
     }
 ]
