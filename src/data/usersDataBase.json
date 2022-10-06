@@ -34,14 +34,14 @@
     {
         "id": 4,
         "email": "hetfield@metallica.com",
-        "pass": "$2a$10$bSPqV9F1dhZpMKlAW7G59uQbmEO4ueLdV4aoMttEvfHIsso22sdhq",
-        "name": "Jams Hetfield",
+        "pass": "$2a$10$uWybrB90FnEMQlfk3lVBuOn4sSQFjRUPtQLzxCke8uSsaQUrFn9t.",
+        "name": "James Hetfield",
         "direccion": "Met Family",
         "piso": "",
         "departamento": "",
-        "image:": "user-1665025675661.jpg",
-        "ciudad": "Thrash",
-        "provincia": "Metal",
+        "image:": "user-1665025892903.jpg",
+        "ciudad": "Metal",
+        "provincia": "Thrash",
         "pais": "Uruguay"
     }
 ]
