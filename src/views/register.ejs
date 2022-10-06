@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', {title: 'Registro'}) %>
+<body>
+    <%- include('partials/header')  %>
+    <div class="margen-navbar">
+      <form action="/users/register" method="POST" enctype="multipart/form-data" class="row g-3">
+        <div class="col-md-6">
+          <label for="email" class="form-label">E-Mail</label>
+          <input type="email" class="form-control" name="email" id="email">
+          <% if (locals.errors && errors.email) { %>
+            <h5 style="color: red ;">
+              <%= errors.email.msg %>
+            </h5>
+          <% } %>
+        </div>
+        <div class="col-md-6">
+          <label for="pass" class="form-label">Password</label>
+          <input type="password" class="form-control" name="pass" id="pass">
+          <% if (locals.errors && errors.pass) { %>
+            <h5 style="color: red ;">
+              <%= errors.pass.msg %>
+            </h5>
+          <% } %>
+        </div>
+        <div class="col-12">
+          <label for="name" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" name="name" id="name" placeholder="Jose Perez">
+          <% if (locals.errors && errors.name) { %>
+            <h5 style="color: red ;">
+              <%= errors.name.msg %>
+            </h5>
+          <% } %>
+        </div>
+        <div class="col-6">
+          <label for="direccion" class="form-label">Dirección</label>
+          <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Av. de Mayo 1553">
+          <% if (locals.errors && errors.direccion) { %>
+            <h5 style="color: red ;">
+              <%= errors.direccion.msg %>
+            </h5>
+          <% } %>
+        </div>
+        <div class="col-3">
+          <label for="piso" class="form-label">Piso</label>
+          <input type="text" class="form-control" name="piso" id="piso" placeholder="1">
+        </div>
+        <div class="col-3">
+          <label for="departamento" class="form-label">Departamento</label>
+          <input type="text" class="form-control" name="departamento" id="departamento" placeholder="B">
+        </div>
+        <div class="col-12">
+          <label for="image" class="form-label">Foto de perfil</label>
+          <input type="file" class="form-control" name="image" id="image" placeholder="B">
+          <% if (locals.errors && errors.image) { %>
+            <h5 style="color: red ;">
+              <%= errors.image.msg %>
+            </h5>
+          <% } %>
+        </div>
+        <div class="col-md-4">
+          <label for="ciudad" class="form-label">Ciudad</label>
+          <input type="text" class="form-control" name="ciudad" id="ciudad">
+          <% if (locals.errors && errors.ciudad) { %>
+            <h5 style="color: red ;">
+              <%= errors.ciudad.msg %>
+            </h5>
+          <% } %>
+        </div>
+        <div class="col-md-4">
+          <label for="provincia" class="form-label">Provincia/Estado</label>
+          <input type="text" class="form-control" name="provincia" id="provincia">
+          <% if (locals.errors && errors.provincia) { %>
+            <h5 style="color: red ;">
+              <%= errors.provincia.msg %>
+            </h5>
+          <% } %>
+        </div>
+        <div class="col-md-4">
+          <label for="pais" class="form-label">País</label>
+          <select name="pais" id="pais" class="form-select">
+            <option>Elige...</option>
+            <option>Argentina</option>
+          </select>
+          <% if (locals.errors && errors.pais) { %>
+            <h5 style="color: red ;">
+              <%= errors.pais.msg %>
+            </h5>
+          <% } %>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Registrarme</button>
+        </div>
+      </form>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "email": "berniifranco@gmail.com",
+        "pass": "$2a$10$cb17R459LhPqu/GUGl3MZO7xB.uy5T4xVgV7gJRQnT78ZnM41m9vm",
+        "name": "Bernardo Franco",
+        "direccion": "Pi y Margall 420",
+        "piso": "10",
+        "departamento": "M",
+        "image:": "user-1665016898565.jpeg",
+        "ciudad": "CABA",
+        "provincia": "CABA",
+        "pais": "Argentina"
+    }
+]
