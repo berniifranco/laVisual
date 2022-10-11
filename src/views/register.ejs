@@ -6,42 +6,42 @@
     <div class="margen-navbar">
       <form action="/users/register" method="POST" enctype="multipart/form-data" class="row g-3">
         <% if (locals.errormail && errormail.mail) { %>
-          <h5 style="color: red ;">
+          <h5 class="text-danger">
             <%= errormail.mail.msg %> 
           </h5>
         <% } %>
         <div class="col-md-6">
           <label for="email" class="form-label">E-Mail</label>
-          <input type="email" class="form-control" name="email" id="email">
+          <input type="email" class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%= locals.oldData && oldData.email ? oldData.email : null %>" name="email" id="email">
           <% if (locals.errors && errors.email) { %>
-            <h5 style="color: red ;">
+            <h5 class="text-danger">
               <%= errors.email.msg %>
             </h5>
           <% } %>
         </div>
         <div class="col-md-6">
           <label for="pass" class="form-label">Password</label>
-          <input type="password" class="form-control" name="pass" id="pass">
+          <input type="password" class="form-control <%= locals.errors && errors.pass ? 'is-invalid' : null %>" name="pass" id="pass">
           <% if (locals.errors && errors.pass) { %>
-            <h5 style="color: red ;">
+            <h5 class="text-danger">
               <%= errors.pass.msg %>
             </h5>
           <% } %>
         </div>
         <div class="col-12">
           <label for="name" class="form-label">Nombre Completo</label>
-          <input type="text" class="form-control" name="name" id="name" placeholder="Jose Perez">
+          <input type="text" class="form-control <%= locals.errors && errors.name ? 'is-invalid' : null %>" value="<%= locals.oldData && oldData.name ? oldData.name : null %>" name="name" id="name" placeholder="Jose Perez">
           <% if (locals.errors && errors.name) { %>
-            <h5 style="color: red ;">
+            <h5 class="text-danger">
               <%= errors.name.msg %>
             </h5>
           <% } %>
         </div>
         <div class="col-6">
           <label for="direccion" class="form-label">Dirección</label>
-          <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Av. de Mayo 1553">
+          <input type="text" class="form-control <%= locals.errors && errors.direccion ? 'is-invalid' : null %>" value="<%= locals.oldData && oldData.direccion ? oldData.direccion : null %>" name="direccion" id="direccion" placeholder="Av. de Mayo 1553">
           <% if (locals.errors && errors.direccion) { %>
-            <h5 style="color: red ;">
+            <h5 class="text-danger">
               <%= errors.direccion.msg %>
             </h5>
           <% } %>
@@ -56,34 +56,34 @@
         </div>
         <div class="col-12">
           <label for="image" class="form-label">Foto de perfil</label>
-          <input type="file" class="form-control" name="image" id="image" accept="image/*">
+          <input type="file" class="form-control <%= locals.errors && errors.image ? 'is-invalid' : null %>" name="image" id="image" accept="image/*">
           <% if (locals.errors && errors.image) { %>
-            <h5 style="color: red ;">
+            <h5 class="text-danger">
               <%= errors.image.msg %>
             </h5>
           <% } %>
         </div>
         <div class="col-md-4">
           <label for="ciudad" class="form-label">Ciudad</label>
-          <input type="text" class="form-control" name="ciudad" id="ciudad">
+          <input type="text" class="form-control <%= locals.errors && errors.ciudad ? 'is-invalid' : null %>" value="<%= locals.oldData && oldData.ciudad ? oldData.ciudad : null %>" name="ciudad" id="ciudad">
           <% if (locals.errors && errors.ciudad) { %>
-            <h5 style="color: red ;">
+            <h5 class="text-danger">
               <%= errors.ciudad.msg %>
             </h5>
           <% } %>
         </div>
         <div class="col-md-4">
           <label for="provincia" class="form-label">Provincia/Estado</label>
-          <input type="text" class="form-control" name="provincia" id="provincia">
+          <input type="text" class="form-control <%= locals.errors && errors.provincia ? 'is-invalid' : null %>" value="<%= locals.oldData && oldData.provincia ? oldData.provincia : null %>" name="provincia" id="provincia">
           <% if (locals.errors && errors.provincia) { %>
-            <h5 style="color: red ;">
+            <h5 class="text-danger">
               <%= errors.provincia.msg %>
             </h5>
           <% } %>
         </div>
         <div class="col-md-4">
           <label for="pais" class="form-label">País</label>
-          <select name="pais" id="pais" class="form-select">
+          <select name="pais" id="pais" class="form-select <%= locals.errors && errors.pais ? 'is-invalid' : null %>">
             <option>Elige...</option>
             <option>Argentina</option>
             <option>Brasil</option>
@@ -92,7 +92,7 @@
             <option>Bolivia</option>
           </select>
           <% if (locals.errors && errors.pais) { %>
-            <h5 style="color: red ;">
+            <h5 class="text-danger">
               <%= errors.pais.msg %>
             </h5>
           <% } %>

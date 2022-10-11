@@ -52,7 +52,7 @@ const controller = {
                 fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 4), 'utf-8');
     
                 res.redirect('/');
-            }
+            };
 
         } else {
             res.render('register', { errors: errors.mapped(), oldData: datos })
