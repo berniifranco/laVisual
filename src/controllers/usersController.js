@@ -11,7 +11,8 @@ const controller = {
         res.send('respond with a resource')
     },
     register: (req, res) => {
-        res.render('register')
+        let idBus = null;
+        res.render('register', { id: idBus })
     },
     processRegister: (req, res) => {
         let idUser = (users[users.length-1].id)+1;

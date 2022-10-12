@@ -19,17 +19,13 @@
                 Usuarios
               </a>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="/users/register">Registrarse</a></li>
-                <li><a class="dropdown-item" href="/users/login">Iniciar Sesión</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
                 <% if (id != null) { %>
                   <li><a class="dropdown-item" href="/users/edit/<%= id %>">Editar cuenta</a></li>
+                  <li><a class="dropdown-item" href="/users/logout">Cerrar Sesión</a></li>
                 <% } else { %>
-                  <li><a class="dropdown-item" href="#">Editar cuenta</a></li>
-                <% } %> 
-                <li><a class="dropdown-item" href="/users/logout">Cerrar Sesión</a></li>
+                  <li><a class="dropdown-item" href="/users/register">Registrarse</a></li>
+                  <li><a class="dropdown-item" href="/users/login">Iniciar Sesión</a></li>
+                <% } %>
               </ul>
             </li>
             <li class="nav-item dropdown">
