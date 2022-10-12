@@ -33,13 +33,22 @@
                   Productos y Servicios
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="#">Ferretería</a></li>
-                  <li><a class="dropdown-item" href="#">Electricidad</a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#">Nuestros Trabajos</a></li>
-                  <li><a class="dropdown-item" href="#">Solicitar presupuesto</a></li>
+                  <% if (id != null) { %>
+                    <li><a class="dropdown-item" href="/products/ferreteria">Ferretería</a></li>
+                    <li><a class="dropdown-item" href="#">Electricidad</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/products/create">Crear Producto</a></li>
+                  <% } else { %>
+                    <li><a class="dropdown-item" href="/products/ferreteria">Ferretería</a></li>
+                    <li><a class="dropdown-item" href="#">Electricidad</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Nuestros Trabajos</a></li>
+                    <li><a class="dropdown-item" href="#">Solicitar presupuesto</a></li>
+                  <% } %> 
                 </ul>
               </li>
             <li class="nav-item">

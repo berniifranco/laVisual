@@ -8,14 +8,14 @@
     {
         "id": 2,
         "email": "berniifranco@gmail.com",
-        "pass": "$2a$10$6r5ka43mtT.5QCPg./ufFeTHEL2T3uwBCWR6oBJOEsPmLz/pPrhDS",
-        "name": "Bernardo Rene Franco Rodriguez",
+        "pass": "$2a$10$4j0DPlfBvfij9sSb3d.yUe.sohn6Hp0HuciuWsVFMRTgucTBfW3je",
+        "name": "Bernardo Franco",
         "direccion": "Pi y Margall 420",
         "piso": "10",
         "departamento": "M",
         "image:": "user-1665533825570.jpeg",
-        "ciudad": "CABA",
-        "provincia": "CABA",
+        "ciudad": "C.A.B.A.",
+        "provincia": "C.A.B.A.",
         "pais": "Argentina"
     }
 ]
