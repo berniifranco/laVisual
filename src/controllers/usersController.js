@@ -16,6 +16,7 @@ const controller = {
     },
     processRegister: (req, res) => {
         let idUser = (users[users.length-1].id)+1;
+        let idBus = null;
         let datos = req.body;
         let mailDuplicado = null;
         let errors = validationResult(req);
@@ -56,7 +57,7 @@ const controller = {
             };
 
         } else {
-            res.render('register', { errors: errors.mapped(), oldData: datos })
+            res.render('register', { errors: errors.mapped(), oldData: datos, id: idBus })
         }
 
 
@@ -99,7 +100,7 @@ const controller = {
                 res.redirect('/');
             }
         } else {
-            res.render('login', { errors: errors.mapped(), oldData: datos });
+            res.render('login', { errors: errors.mapped(), oldData: datos, id: idBus });
         }
 
     },
