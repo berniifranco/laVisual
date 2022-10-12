@@ -86,9 +86,17 @@ const controller = {
         if (errors.isEmpty()) {
             for (let o of users) {
                 if (datos.email == o.email) {
-                    if (bcrypt.compareSync(datos.pass, o.pass)) {
-                        usuarioALoguearse = o;
-                        break;
+
+                    if (datos.email == 'admin@admin.com') {
+                        if (datos.pass == o.pass) {
+                            usuarioALoguearse = o;
+                            break;
+                        }
+                    } else {
+                        if (bcrypt.compareSync(datos.pass, o.pass)) {
+                            usuarioALoguearse = o;
+                            break;
+                        }
                     }
                 }
             }
