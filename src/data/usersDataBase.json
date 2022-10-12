@@ -8,40 +8,14 @@
     {
         "id": 2,
         "email": "berniifranco@gmail.com",
-        "pass": "$2a$10$cb17R459LhPqu/GUGl3MZO7xB.uy5T4xVgV7gJRQnT78ZnM41m9vm",
-        "name": "Bernardo Franco",
+        "pass": "$2a$10$99497e5ApFjiaqgqokcDsO/EMM2lS5XAJOiAObH125zptFakjDinm",
+        "name": "Bernardo Rene Franco Rodriguez",
         "direccion": "Pi y Margall 420",
         "piso": "10",
         "departamento": "M",
-        "image:": "user-1665016898565.jpeg",
+        "image:": "user-1665533825570.jpeg",
         "ciudad": "CABA",
         "provincia": "CABA",
         "pais": "Argentina"
-    },
-    {
-        "id": 3,
-        "email": "familia@franco.com",
-        "pass": "$2a$10$uc5U0k4AxjzxpQzL0AKgC.m.Vp0FqmGaRjr4Gmi1IaZMeKWmPgkce",
-        "name": "Familia Franco",
-        "direccion": "Aristóbulo del Valle 1553",
-        "piso": "",
-        "departamento": "",
-        "image:": "user-1665022891839.jpeg",
-        "ciudad": "Florencio Varela",
-        "provincia": "Buenos Aires",
-        "pais": "Argentina"
-    },
-    {
-        "id": 4,
-        "email": "hetfield@metallica.com",
-        "pass": "$2a$10$uWybrB90FnEMQlfk3lVBuOn4sSQFjRUPtQLzxCke8uSsaQUrFn9t.",
-        "name": "James Hetfield",
-        "direccion": "Met Family",
-        "piso": "",
-        "departamento": "",
-        "image:": "user-1665025892903.jpg",
-        "ciudad": "Metal",
-        "provincia": "Thrash",
-        "pais": "Uruguay"
     }
 ]

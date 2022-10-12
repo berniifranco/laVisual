@@ -24,7 +24,11 @@
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Editar cuenta</a></li>
+                <% if (id != null) { %>
+                  <li><a class="dropdown-item" href="/users/edit/<%= id %>">Editar cuenta</a></li>
+                <% } else { %>
+                  <li><a class="dropdown-item" href="#">Editar cuenta</a></li>
+                <% } %> 
                 <li><a class="dropdown-item" href="/users/logout">Cerrar Sesión</a></li>
               </ul>
             </li>

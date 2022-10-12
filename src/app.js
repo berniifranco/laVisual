@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 const session = require('express-session');
+const methodOverride = require('method-override');
 var logger = require('morgan');
 const recordameMiddleware = require('./middlewares/recordameMiddleware');
 
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({secret: 'Es un secreto', resave: false, saveUninitialized: false}));
 app.use(recordameMiddleware);

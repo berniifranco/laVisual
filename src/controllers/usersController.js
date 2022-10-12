@@ -36,7 +36,7 @@ const controller = {
                 let nuevoUser = {
                     "id": idUser,
                     "email": datos.email,
-                    "pass": bcrypt.hashSync(datos.pass),
+                    "pass": bcrypt.hashSync(datos.pass, 10),
                     "name": datos.name,
                     "direccion": datos.direccion,
                     "piso": datos.piso,
@@ -51,7 +51,7 @@ const controller = {
     
                 fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 4), 'utf-8');
     
-                res.redirect('/');
+                res.redirect('/users/login');
             };
 
         } else {
@@ -61,10 +61,12 @@ const controller = {
 
     },
     login: (req, res) => {
-        res.render('login')
+        let idBuscado = null;
+        res.render('login', { id: idBuscado })
     },
     processLogin: (req, res) => {
         let datos = req.body;
+        let idBus = null;
         let usuarioALoguearse;
         let errors = validationResult(req);
 
@@ -84,7 +86,7 @@ const controller = {
                     credencial: {
                         msg: 'Credenciales inválidas'
                     }
-                } })
+                }, id:idBus })
             } else {
 
                 req.session.usuarioLogueado = usuarioALoguearse;
@@ -104,7 +106,48 @@ const controller = {
         req.session.destroy();
         res.clearCookie('recordame')
         res.redirect('/');
+    },
+    edit: (req, res) => {
+        let idBuscado = req.params.id;
+        let userB = null;
+        for (let o of users) {
+            if(o.id == idBuscado) {
+                userB = o;
+                break;
+            };
+        };
+
+        res.render('form-edit-user', { usuario: userB, id:idBuscado })
+    },
+    update: (req, res) => {
+        let idBus = req.params.id;
+        let datos = req.body;
+
+        for (let o of users) {
+            if (idBus == o.id) {
+                o.name = datos.name;
+                o.pass = bcrypt.hashSync(datos.pass, 10);
+                o.email = datos.email;
+                o.direccion = datos.direccion;
+                o.piso = datos.piso;
+                o.departamento = datos.departamento;
+                o.ciudad = datos.ciudad;
+                o.provincia = datos.provincia;
+                o.pais = datos.pais;
+                break;
+            }
+        };
+
+        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 4), 'utf-8');
+
+        req.session.destroy();
+        res.clearCookie('recordame')
+
+        res.redirect('/');
+
     }
-};
+
+}
+
 
 module.exports = controller;

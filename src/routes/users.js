@@ -52,6 +52,9 @@ router.post('/login', validacionesLogin, usersController.processLogin);
 
 router.get('/logout', authMiddleware, usersController.logout);
 
+router.get('/edit/:id', usersController.edit);
+router.put('/edit/:id', usersController.update);
+
 /*** PUREBAS ***/
 router.get('/check', function (req, res) {
     if (req.session.usuarioLogueado) {
