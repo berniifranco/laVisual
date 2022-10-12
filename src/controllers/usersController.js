@@ -29,7 +29,7 @@ const controller = {
                         mail: {
                             msg: 'El E-Mail ya está registrado'
                         }
-                    } });
+                    }, id: idBus });
                     break;
                 }
             };
