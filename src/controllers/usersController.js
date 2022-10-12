@@ -57,6 +57,17 @@ const controller = {
             };
 
         } else {
+            for (let o of users) {
+                if (datos.email == o.email) {
+                    mailDuplicado = o;
+                    res.render('register', { errors: errors.mapped(), oldData: datos, errormail: {
+                        mail: {
+                            msg: 'El E-Mail ya está registrado'
+                        }
+                    }, id: idBus });
+                    break;
+                }
+            };
             res.render('register', { errors: errors.mapped(), oldData: datos, id: idBus })
         }
 
