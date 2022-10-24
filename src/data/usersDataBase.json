@@ -1,21 +1,28 @@
 [
     {
         "id": 1,
-        "name": "Administrador",
         "email": "admin@admin.com",
-        "pass": "admin"
+        "pass": "$2a$10$tL9jbbjoQkb2QCBJE93kPOYwveaog/jyLNXPKhOAWiILLbZZyfXhS",
+        "name": "Admin",
+        "direccion": "Admin",
+        "piso": "",
+        "departamento": "",
+        "image:": "user-1666651475474.jpg",
+        "ciudad": "Admin",
+        "provincia": "Admin",
+        "pais": "Argentina"
     },
     {
         "id": 2,
         "email": "berniifranco@gmail.com",
-        "pass": "$2a$10$4j0DPlfBvfij9sSb3d.yUe.sohn6Hp0HuciuWsVFMRTgucTBfW3je",
-        "name": "Bernardo Franco",
+        "pass": "$2a$10$f0cDaZUMKZ4H.c0WBygK3ePqU3iSX39HiYhgbnrtbZZuo0WbBgPLK",
+        "name": "Bernardo Rene Franco Rodriguez",
         "direccion": "Pi y Margall 420",
         "piso": "10",
         "departamento": "M",
-        "image:": "user-1665533825570.jpeg",
-        "ciudad": "C.A.B.A.",
-        "provincia": "C.A.B.A.",
+        "image:": "user-1666651655683.jpeg",
+        "ciudad": "CABA",
+        "provincia": "Ciudad Autónoma de Buenos Aires",
         "pais": "Argentina"
     }
 ]

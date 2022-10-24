@@ -6,6 +6,16 @@ const { validationResult } = require('express-validator');
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
+function generarId () {
+    let idUser;
+    if (users.length != 0) {
+        idUser = (users[users.length-1].id)+1;
+    } else {
+        idUser = 1;
+    };
+    return idUser
+};
+
 const controller = {
     index: (req, res) => {
         res.send('respond with a resource')
@@ -15,7 +25,6 @@ const controller = {
         res.render('register', { id: idBus })
     },
     processRegister: (req, res) => {
-        let idUser = (users[users.length-1].id)+1;
         let idBus = null;
         let datos = req.body;
         let mailDuplicado = null;
@@ -36,7 +45,7 @@ const controller = {
 
             if (mailDuplicado == null) {
                 let nuevoUser = {
-                    "id": idUser,
+                    "id": generarId(),
                     "email": datos.email,
                     "pass": bcrypt.hashSync(datos.pass, 10),
                     "name": datos.name,
@@ -86,18 +95,10 @@ const controller = {
         if (errors.isEmpty()) {
             for (let o of users) {
                 if (datos.email == o.email) {
-
-                    if (datos.email == 'admin@admin.com') {
-                        if (datos.pass == o.pass) {
-                            usuarioALoguearse = o;
-                            break;
-                        }
-                    } else {
                         if (bcrypt.compareSync(datos.pass, o.pass)) {
                             usuarioALoguearse = o;
                             break;
                         }
-                    }
                 }
             }
     
