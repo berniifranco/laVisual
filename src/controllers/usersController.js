@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
+const sharp = require('sharp');
 const { validationResult } = require('express-validator');
 
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
@@ -24,7 +25,7 @@ const controller = {
         let idBus = null;
         res.render('register', { id: idBus })
     },
-    processRegister: (req, res) => {
+    processRegister: async(req, res) => {
         let idBus = null;
         let datos = req.body;
         let mailDuplicado = null;
@@ -44,6 +45,9 @@ const controller = {
             };
 
             if (mailDuplicado == null) {
+                let img = `${'user-'}${Date.now()}${path.extname(req.file.originalname)}`;
+                await sharp(req.file.buffer).resize(318, 235, {fit: "fill" , background:'#fff'}).jpeg({quality: 50, chromaSubsampling: '4:4:4'})
+                .toFile(path.join(__dirname, '../../public/images/users/') + img);
                 let nuevoUser = {
                     "id": generarId(),
                     "email": datos.email,
@@ -52,7 +56,7 @@ const controller = {
                     "direccion": datos.direccion,
                     "piso": datos.piso,
                     "departamento": datos.departamento,
-                    "image:": req.file.filename,
+                    "image:": img,
                     "ciudad": datos.ciudad,
                     "provincia": datos.provincia,
                     "pais": datos.pais

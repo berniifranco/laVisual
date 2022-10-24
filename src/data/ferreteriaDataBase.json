@@ -1,30 +1,16 @@
 [
     {
         "id": 1,
-        "name": "Tornillos del 8",
-        "price": 5.78,
-        "stock": 50,
+        "name": "Martillo",
+        "price": 4999,
+        "stock": 10,
         "tipo": "Ferretería"
     },
     {
         "id": 2,
-        "name": "Bulones",
-        "price": 7,
+        "name": "Tornillos",
+        "price": 25,
         "stock": 100,
-        "tipo": "Ferretería"
-    },
-    {
-        "id": 3,
-        "name": "Cable x metro",
-        "price": 10000,
-        "stock": 37,
-        "tipo": "Electricidad"
-    },
-    {
-        "id": 4,
-        "name": "Martillo",
-        "price": 2500,
-        "stock": 35,
         "tipo": "Ferretería"
     }
 ]

@@ -24,5 +24,18 @@
         "ciudad": "CABA",
         "provincia": "Ciudad Autónoma de Buenos Aires",
         "pais": "Argentina"
+    },
+    {
+        "id": 3,
+        "email": "by_bernii@outlook.com",
+        "pass": "$2a$10$9E4kRYCtPsZV7lVy1wmAB.9saC2S9aaI1Xk9IHnautLC7A3EsTvLO",
+        "name": "Frranco Bernardo R",
+        "direccion": "Aristobulo del Valle 1553",
+        "piso": "",
+        "departamento": "",
+        "image:": "user-1666652782768.jpg",
+        "ciudad": "Florencio Varela",
+        "provincia": "Buenos Aires",
+        "pais": "Argentina"
     }
 ]
