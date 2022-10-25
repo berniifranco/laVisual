@@ -21,6 +21,7 @@
           <td><%= o.name %></td>
           <td>$ <%= o.price %></td>
           <td><%= o.stock %> unidades</td>
+          <td><img src="/images/products/<%= o.image %>" alt="imagen-producto"></td>
           <% if (id != null) { %>
             <td>
               <form action="/products/delete/<%= o.id %>?_method=DELETE" method="POST">

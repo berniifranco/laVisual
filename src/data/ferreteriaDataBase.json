@@ -1,16 +1,18 @@
 [
     {
         "id": 1,
-        "name": "Martillo",
-        "price": 4999,
-        "stock": 10,
-        "tipo": "Ferretería"
+        "name": "Tornillos",
+        "price": 25,
+        "stock": 1000,
+        "tipo": "Ferretería",
+        "image": "product-1666680295298.jpg"
     },
     {
         "id": 2,
-        "name": "Tornillos",
-        "price": 25,
-        "stock": 100,
-        "tipo": "Ferretería"
+        "name": "Cable",
+        "price": 10000,
+        "stock": 30,
+        "tipo": "Electricidad",
+        "image": "product-1666680314640.jpg"
     }
 ]

@@ -18,8 +18,8 @@ function generarId () {
 };
 
 const controller = {
-    index: (req, res) => {
-        res.send('respond with a resource')
+    detail: (req, res) => {
+        res.render('userDetail')
     },
     register: (req, res) => {
         let idBus = null;

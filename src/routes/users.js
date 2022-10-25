@@ -42,7 +42,7 @@ let validacionesLogin = [
 const usersController = require('../controllers/usersController')
 
 /* GET users listing. */
-router.get('/', usersController.index);
+router.get('/detail', usersController.detail);
 
 router.get('/register', guestMiddleware, usersController.register);
 router.post('/register', upload.single('image'), validacionesRegistro, usersController.processRegister);

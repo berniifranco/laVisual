@@ -1,6 +1,6 @@
-const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 const ferreteriaFilePath = path.join(__dirname, '../data/ferreteriaDataBase.json');
 const ferreteria = JSON.parse(fs.readFileSync(ferreteriaFilePath, 'utf-8'));
 const { validationResult } = require('express-validator');
@@ -35,7 +35,7 @@ const controller = {
 
         res.render('product-create-form', { id: idUser })
     },
-    store: (req, res) => {
+    store: async(req, res) => {
         let datos = req.body;
         let errors = validationResult(req);
 
@@ -46,12 +46,16 @@ const controller = {
         };
 
         if (errors.isEmpty()) {
+            let img = `${'product-'}${Date.now()}${path.extname(req.file.originalname)}`;
+            await sharp(req.file.buffer).resize(166, 37, {fit: "fill" , background:'#fff'}).jpeg({quality: 50, chromaSubsampling: '4:4:4'})
+            .toFile(path.join(__dirname, '../../public/images/products/') + img);
             let nuevoProducto = {
                 "id": generarIdProd(),
                 "name": datos.name,
                 "price": parseInt(datos.price),
                 "stock": parseInt(datos.stock),
-                "tipo": datos.tipo
+                "tipo": datos.tipo,
+                "image": img
             };
     
             ferreteria.push(nuevoProducto);

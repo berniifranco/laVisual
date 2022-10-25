@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { body } = require('express-validator');
+const upload = require('../middlewares/multerProductMiddleware');
 
 let validacionesProductos = [
     body('name').notEmpty().withMessage('Debes ingresar el nombre del producto'),
@@ -13,7 +14,7 @@ const productsController = require('../controllers/productsController');
 router.get('/ferreteria', productsController.ferreteria);
 
 router.get('/create', productsController.create);
-router.post('/create', validacionesProductos, productsController.store);
+router.post('/create', upload.single('image'), validacionesProductos, productsController.store);
 
 router.delete('/delete/:id', productsController.delete);
 
