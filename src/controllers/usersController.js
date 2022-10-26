@@ -21,6 +21,9 @@ const controller = {
     detail: (req, res) => {
         res.render('userDetail', {title: 'Perfil de Usuario'})
     },
+    list: (req, res) => {
+        res.render('users', {users: users, title: 'Listado de Usuarios'});
+    },
     register: (req, res) => {
         let idBus = null;
         res.render('register', { id: idBus })

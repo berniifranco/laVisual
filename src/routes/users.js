@@ -55,6 +55,9 @@ router.get('/logout', authMiddleware, usersController.logout);
 router.get('/edit/:id', usersController.edit);
 router.put('/edit/:id', usersController.update);
 
+/*** LISTADO DE USUARIOS ***/
+router.get('/list', usersController.list);
+
 /*** ELIMINAR USUARIO ***/
 router.delete('/:id', usersController.destroy)
 
