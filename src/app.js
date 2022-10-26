@@ -6,6 +6,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 var logger = require('morgan');
 const recordameMiddleware = require('./middlewares/recordameMiddleware');
+const ifAdmin = require('./middlewares/adminMiddleware');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,6 +25,7 @@ app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({secret: 'Es un secreto', resave: false, saveUninitialized: false}));
 app.use(recordameMiddleware);
+app.use(ifAdmin);
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);

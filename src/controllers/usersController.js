@@ -19,7 +19,7 @@ function generarId () {
 
 const controller = {
     detail: (req, res) => {
-        res.render('userDetail')
+        res.render('userDetail', {title: 'Perfil de Usuario'})
     },
     register: (req, res) => {
         let idBus = null;
@@ -56,7 +56,7 @@ const controller = {
                     "direccion": datos.direccion,
                     "piso": datos.piso,
                     "departamento": datos.departamento,
-                    "image:": img,
+                    "image": img,
                     "ciudad": datos.ciudad,
                     "provincia": datos.provincia,
                     "pais": datos.pais
@@ -117,7 +117,7 @@ const controller = {
 
                 req.session.usuarioLogueado = usuarioALoguearse;
 
-                if (datos.recordame != undefined) {
+                if (datos.recordame != undefined && req.session.usuarioLogueado.email != 'admin@admin.com') {
                     res.cookie('recordame', req.session.usuarioLogueado.email, { maxAge: ((((1000 * 60) * 60) * 24) * 365) })
                 }
 
@@ -171,8 +171,32 @@ const controller = {
 
         res.redirect('/');
 
-    }
+    },
+    destroy: (req, res) => {
+        let idX = req.params.id;
+        let imgBorrar;
 
+        let nuevaListaUsers = users.filter(function(e) {
+            return e.id != idX;
+        });
+
+        for (let o of users) {
+            if (o.id == idX) {
+                imgBorrar = o.image;
+                break;
+            };
+        };
+
+        req.session.destroy();
+        res.clearCookie('recordame');
+
+        fs.unlinkSync(path.join(__dirname, '../../public/images/users', imgBorrar));
+
+        fs.writeFileSync(usersFilePath, JSON.stringify(nuevaListaUsers, null, 4), 'utf-8');
+
+        res.redirect('/');
+
+    }
 }
 
 

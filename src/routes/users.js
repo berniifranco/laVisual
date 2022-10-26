@@ -42,7 +42,7 @@ let validacionesLogin = [
 const usersController = require('../controllers/usersController')
 
 /* GET users listing. */
-router.get('/detail', usersController.detail);
+router.get('/detail/:id', usersController.detail);
 
 router.get('/register', guestMiddleware, usersController.register);
 router.post('/register', upload.single('image'), validacionesRegistro, usersController.processRegister);
@@ -54,6 +54,9 @@ router.get('/logout', authMiddleware, usersController.logout);
 
 router.get('/edit/:id', usersController.edit);
 router.put('/edit/:id', usersController.update);
+
+/*** ELIMINAR USUARIO ***/
+router.delete('/:id', usersController.destroy)
 
 /*** PUREBAS ***/
 router.get('/check', function (req, res) {

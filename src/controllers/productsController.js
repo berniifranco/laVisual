@@ -69,11 +69,22 @@ const controller = {
 
     },
     delete: (req, res) => {
-        let idBus = req.params.id
+        let idBus = req.params.id;
+
+        let imageX;
         
         let nuevaLista = ferreteria.filter(function(e) {
             return e.id != idBus
         });
+
+        for (let o of ferreteria) {
+            if (o.id == idBus) {
+                imageX = o.image;
+                break;
+            };
+        };
+
+        fs.unlinkSync(path.join(__dirname, '../../public/images/products', imageX));
 
         fs.writeFileSync(ferreteriaFilePath, JSON.stringify(nuevaLista, null, 4), 'utf-8');
 

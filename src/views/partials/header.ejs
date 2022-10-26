@@ -19,9 +19,14 @@
                 Usuarios
               </a>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <% if (id != null) { %>
-                  <li><a class="dropdown-item" href="/users/edit/<%= id %>">Editar cuenta</a></li>
-                  <li><a class="dropdown-item" href="/users/logout">Cerrar Sesión</a></li>
+                <% if (locals.usuarioLogueado) { %>
+                  <% if (locals.admin) { %>
+                    <li><a class="dropdown-item" href="/users/logout">Cerrar Sesión</a></li>
+                  <% } else { %>
+                    <li><a class="dropdown-item" href="/users/detail/<%= locals.usuarioLogueado.id %>">Mi perfil</a></li>
+                    <li><a class="dropdown-item" href="/users/edit/<%= locals.usuarioLogueado.id %>">Editar cuenta</a></li>
+                    <li><a class="dropdown-item" href="/users/logout">Cerrar Sesión</a></li>
+                  <% } %> 
                 <% } else { %>
                   <li><a class="dropdown-item" href="/users/register">Registrarse</a></li>
                   <li><a class="dropdown-item" href="/users/login">Iniciar Sesión</a></li>
@@ -33,7 +38,7 @@
                   Productos y Servicios
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <% if (id != null) { %>
+                  <% if (locals.usuarioLogueado) { %>
                     <li><a class="dropdown-item" href="/products/ferreteria">Ferretería</a></li>
                     <li><a class="dropdown-item" href="#">Electricidad</a></li>
                     <li>

@@ -22,13 +22,17 @@
           <td>$ <%= o.price %></td>
           <td><%= o.stock %> unidades</td>
           <td><img src="/images/products/<%= o.image %>" alt="imagen-producto"></td>
-          <% if (id != null) { %>
+          <% if (locals.admin) { %>
             <td>
               <form action="/products/delete/<%= o.id %>?_method=DELETE" method="POST">
                 <button class="btn btn-sm btn-dark">Borrar</button>
               </form>
             </td>
-          <% } %>
+          <% } else { %>
+            <td>
+              <button class="btn btn-sm btn-dark">Agregar al carrito</button>
+            </td>
+          <% } %> 
         </tr>
       <% } %>
     </tbody>

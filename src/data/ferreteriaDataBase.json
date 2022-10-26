@@ -11,8 +11,8 @@
         "id": 2,
         "name": "Cable",
         "price": 10000,
-        "stock": 30,
+        "stock": 25,
         "tipo": "Electricidad",
-        "image": "product-1666680314640.jpg"
+        "image": "product-1666763380190.jpg"
     }
 ]
