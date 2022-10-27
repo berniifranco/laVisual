@@ -11,7 +11,12 @@ const usersFilePath = path.join(__dirname, './src/data/usersDataBase.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 const secretKey = 'Mi llave ultra secreta';
-const token = jwt.sign(users[1], secretKey);
+const token = jwt.sign({
+    exp: Math.floor(Date.now() / 1000) + 10,
+    data: users[1]
+},
+secretKey
+);
 
 app.get('/', (req, res) => {
     res.send(token)
@@ -29,7 +34,7 @@ app.get('/login', (req, res) => {
     const user = users.find((u) => u.email == email && bcryptjs.compareSync(pass, u.pass))
     if (user) {
         const token = jwt.sign({
-            exp: Math.floor(Date.now() / 1000) + 10,
+            exp: Math.floor(Date.now() / 1000) + 60 * 30,
             data: user
         },
         secretKey
