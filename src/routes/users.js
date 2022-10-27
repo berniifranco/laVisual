@@ -44,14 +44,18 @@ const usersController = require('../controllers/usersController')
 /* GET users listing. */
 router.get('/detail/:id', usersController.detail);
 
+/*** REGISTRO DE USUARIOS ***/
 router.get('/register', guestMiddleware, usersController.register);
 router.post('/register', upload.single('image'), validacionesRegistro, usersController.processRegister);
 
+/*** LOGIN DE USUARIOS ***/
 router.get('/login', logueadoMiddleware, usersController.login);
 router.post('/login', validacionesLogin, usersController.processLogin);
 
+/*** LOGOUT DE USUARIOS ***/
 router.get('/logout', authMiddleware, usersController.logout);
 
+/*** EDITAR USUARIOS ***/
 router.get('/edit/:id', usersController.edit);
 router.put('/edit/:id', usersController.update);
 
@@ -60,14 +64,5 @@ router.get('/list', usersController.list);
 
 /*** ELIMINAR USUARIO ***/
 router.delete('/:id', usersController.destroy)
-
-/*** PUREBAS ***/
-router.get('/check', function (req, res) {
-    if (req.session.usuarioLogueado) {
-        res.send('Estás logueado')
-    } else {
-        res.send('No estás logueado')
-    }
-})
 
 module.exports = router;
