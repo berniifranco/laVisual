@@ -64,36 +64,39 @@ const controller = {
         let usuarioALoguearse;
         let errors = validationResult(req);
 
-        if (errors.isEmpty()) {
-            for (let o of users) {
-                if (datos.email == o.email) {
-                        if (bcrypt.compareSync(datos.pass, o.pass)) {
-                            usuarioALoguearse = o;
-                            break;
-                        }
-                }
-            }
-    
-            if (usuarioALoguearse == undefined) {
-                res.render('login', { error:
-                {
-                    credencial: {
-                        msg: 'Credenciales inválidas'
+        db.Persona.findAll()
+            .then(function(persona) {
+                db.Persona.findOne({
+                    where: {
+                        email: datos.email
                     }
-                }, id:idBus })
-            } else {
+                })
+                .then(function(resultado) {
+                    if (bcrypt.compareSync(datos.pass, resultado.contrasena)) {
+                        usuarioALoguearse = resultado;
+                    };
+                    if (usuarioALoguearse == undefined) {
+                        res.render('login', { error:
+                        {
+                            credencial: {
+                                msg: 'Credenciales inválidas'
+                            }
+                        }, id:idBus })
+                    } else {
+                        req.session.usuarioLogueado = usuarioALoguearse;
 
-                req.session.usuarioLogueado = usuarioALoguearse;
-
-                if (datos.recordame != undefined && req.session.usuarioLogueado.email != 'admin@admin.com') {
-                    res.cookie('recordame', req.session.usuarioLogueado.email, { maxAge: ((((1000 * 60) * 60) * 24) * 365) })
-                }
-
-                res.redirect('/');
-            }
-        } else {
-            res.render('login', { errors: errors.mapped(), oldData: datos, id: idBus });
-        }
+                        res.redirect('/');
+                    }
+                })
+                .catch(function(error) {
+                    res.render('login', { error:
+                        {
+                            credencial: {
+                                msg: 'Credenciales inválidas'
+                            }
+                        }, id:idBus })
+                })
+            })
 
     },
     logout: (req, res) => {
