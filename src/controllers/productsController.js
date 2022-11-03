@@ -25,9 +25,27 @@ const controller = {
             idUser = req.session.usuarioLogueado.id;
         }
 
-        db.Producto.findAll()
+        db.Producto.findAll({
+            include: [{association: 'categoria'}, {association: 'persona'}]
+        })
             .then(function(productos) {
-                res.render('products', {title: 'Productos', productos: productos})
+                let listaProductos = [];
+
+                for (producto of productos) {
+                    let objAux = {
+                        nombre: producto.nombre,
+                        precio: producto.precio,
+                        cantidad: producto.cantidad,
+                        image: 'blablabla',
+                        categoria: producto.categoria.nombre,
+                        usuario: producto.persona.nombre
+                    };
+
+                    listaProductos.push(objAux)
+
+                };
+
+                res.render('products', {title: 'Productos', productos: listaProductos})
             })
     },
     create: (req, res) => {

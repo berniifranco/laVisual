@@ -10,6 +10,8 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Usuario</th>
         <th scope="col">Precio</th>
         <th scope="col">Cantidad</th>
       </tr>
@@ -19,6 +21,8 @@
         <tr>
           <th scope="row"><%= o.id %></th>
           <td><%= o.nombre %></td>
+          <td><%= o.categoria %></td>
+          <td><%= o.usuario %></td>
           <td>$ <%= o.precio %></td>
           <td><%= o.cantidad %> unidades</td>
           <td><img src="/images/products/<%= o.image %>" alt="imagen-producto"></td>
