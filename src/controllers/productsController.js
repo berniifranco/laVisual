@@ -5,6 +5,8 @@ const ferreteriaFilePath = path.join(__dirname, '../data/ferreteriaDataBase.json
 const ferreteria = JSON.parse(fs.readFileSync(ferreteriaFilePath, 'utf-8'));
 const { validationResult } = require('express-validator');
 
+let db = require('../database/models');
+
 function generarIdProd () {
     let nuevoId;
     if (ferreteria.length != 0) {
@@ -23,8 +25,10 @@ const controller = {
             idUser = req.session.usuarioLogueado.id;
         }
 
-        const ferreteria = JSON.parse(fs.readFileSync(ferreteriaFilePath, 'utf-8'));
-        res.render('products', { title: 'Ferretería', id: idUser, productos: ferreteria })
+        db.Producto.findAll()
+            .then(function(productos) {
+                res.render('products', {title: 'Productos', productos: productos})
+            })
     },
     create: (req, res) => {
         let idUser = null;

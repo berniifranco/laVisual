@@ -18,9 +18,9 @@
       <% for( let o of productos ) { %>
         <tr>
           <th scope="row"><%= o.id %></th>
-          <td><%= o.name %></td>
-          <td>$ <%= o.price %></td>
-          <td><%= o.stock %> unidades</td>
+          <td><%= o.nombre %></td>
+          <td>$ <%= o.precio %></td>
+          <td><%= o.cantidad %> unidades</td>
           <td><img src="/images/products/<%= o.image %>" alt="imagen-producto"></td>
           <% if (locals.admin) { %>
             <td>
