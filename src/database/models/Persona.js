@@ -44,6 +44,14 @@ module.exports = (sequelize, dataTypes) => {
         Persona.hasMany(modelos.Producto, {
             as: 'producto',
             foreignKey: 'id_persona'
+        });
+        Persona.belongsTo(modelos.Rol, {
+            as: 'rol',
+            foreignKey: 'id_rol'
+        });
+        Persona.belongsTo(modelos.Empresa, {
+            as: 'empresa',
+            foreignKey: 'id_empresa'
         })
     }
 

@@ -12,7 +12,7 @@
         <% } %>
         <div class="col-md-6">
           <label for="email" class="form-label">E-Mail</label>
-          <input type="email" class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%= locals.oldData && oldData.email ? oldData.email : null %>" name="email" id="email">
+          <input type="email" class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>" value="<%= locals.oldData && oldData.email ? oldData.email : null %>" name="email" id="email" placeholder="nombre@mail.com">
           <% if (locals.errors && errors.email) { %>
             <h5 class="text-danger">
               <%= errors.email.msg %>
@@ -28,12 +28,21 @@
             </h5>
           <% } %>
         </div>
-        <div class="col-12">
+        <div class="col-6">
           <label for="name" class="form-label">Nombre Completo</label>
           <input type="text" class="form-control <%= locals.errors && errors.name ? 'is-invalid' : null %>" value="<%= locals.oldData && oldData.name ? oldData.name : null %>" name="name" id="name" placeholder="Jose Perez">
           <% if (locals.errors && errors.name) { %>
             <h5 class="text-danger">
               <%= errors.name.msg %>
+            </h5>
+          <% } %>
+        </div>
+        <div class="col-6">
+          <label for="user" class="form-label">Nombre de usuario</label>
+          <input type="text" class="form-control <%= locals.errors && errors.user ? 'is-invalid' : null %>" value="<%= locals.oldData && oldData.user ? oldData.user : null %>" name="user" id="user" placeholder="jperez">
+          <% if (locals.errors && errors.user) { %>
+            <h5 class="text-danger">
+              <%= errors.user.msg %>
             </h5>
           <% } %>
         </div>
@@ -53,15 +62,6 @@
         <div class="col-3">
           <label for="departamento" class="form-label">Departamento</label>
           <input type="text" class="form-control" name="departamento" id="departamento" placeholder="B">
-        </div>
-        <div class="col-12">
-          <label for="image" class="form-label">Foto de perfil</label>
-          <input type="file" class="form-control <%= locals.errors && errors.image ? 'is-invalid' : null %>" name="image" id="image" accept="image/*">
-          <% if (locals.errors && errors.image) { %>
-            <h5 class="text-danger">
-              <%= errors.image.msg %>
-            </h5>
-          <% } %>
         </div>
         <div class="col-md-4">
           <label for="ciudad" class="form-label">Ciudad</label>

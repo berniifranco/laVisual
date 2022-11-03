@@ -1,5 +1,6 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = 'Rol';
+    let alias = 'Empresa';
+
     let cols = {
         id: {
             type: dataTypes.INTEGER,
@@ -7,23 +8,23 @@ module.exports = (sequelize, dataTypes) => {
             autoIncrement: true
         },
         nombre: {
-            type: dataTypes.STRING
+            type: dataTypes.INTEGER
         }
     };
 
     let config = {
-        tableName: 'rol',
+        tableName: 'empresa',
         timestamps: false
     };
 
-    const Rol = sequelize.define(alias, cols, config);
+    const Empresa = sequelize.define(alias, cols, config);
 
-    Rol.associate =  function(modelos) {
-        Rol.hasMany(modelos.Persona, {
+    Empresa.associate = function(modelos) {
+        Empresa.hasMany(modelos.Persona, {
             as: 'persona',
-            foreignKey: 'id_rol'
+            foreignKey: 'id_empresa'
         })
-    }
+    };
 
-    return Rol
+    return Empresa;
 }

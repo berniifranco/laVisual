@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const sharp = require('sharp');
 const { validationResult } = require('express-validator');
 
+let db = require('../database/models');
+
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
 const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
@@ -31,63 +33,26 @@ const controller = {
     processRegister: async(req, res) => {
         let idBus = null;
         let datos = req.body;
-        let mailDuplicado = null;
         let errors = validationResult(req);
+        db.Persona.findAll()
+            .then(function(users) {
+                db.Persona.create({
+                    nombre: datos.name,
+                    usuario: datos.user,
+                    email: datos.email,
+                    contrasena: bcrypt.hashSync(datos.pass),
+                    direccion: datos.direccion,
+                    ciudad: datos.ciudad,
+                    provincia: datos.provincia,
+                    pais: datos.pais,
+                    id_empresa: 1,
+                    id_rol: 1
+                })
 
-        if (errors.isEmpty()) {
-            for (let o of users) {
-                if (datos.email == o.email) {
-                    mailDuplicado = o;
-                    res.render('register', { errormail: {
-                        mail: {
-                            msg: 'El E-Mail ya está registrado'
-                        }
-                    }, id: idBus });
-                    break;
-                }
-            };
-
-            if (mailDuplicado == null) {
-                let img = `${'user-'}${Date.now()}${path.extname(req.file.originalname)}`;
-                await sharp(req.file.buffer).resize(318, 235, {fit: "fill" , background:'#fff'}).jpeg({quality: 50, chromaSubsampling: '4:4:4'})
-                .toFile(path.join(__dirname, '../../public/images/users/') + img);
-                let nuevoUser = {
-                    "id": generarId(),
-                    "email": datos.email,
-                    "pass": bcrypt.hashSync(datos.pass, 10),
-                    "name": datos.name,
-                    "direccion": datos.direccion,
-                    "piso": datos.piso,
-                    "departamento": datos.departamento,
-                    "image": img,
-                    "ciudad": datos.ciudad,
-                    "provincia": datos.provincia,
-                    "pais": datos.pais
-                };
-    
-                users.push(nuevoUser);
-    
-                fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 4), 'utf-8');
-    
-                res.redirect('/users/login');
-            };
-
-        } else {
-            for (let o of users) {
-                if (datos.email == o.email) {
-                    mailDuplicado = o;
-                    res.render('register', { errors: errors.mapped(), oldData: datos, errormail: {
-                        mail: {
-                            msg: 'El E-Mail ya está registrado'
-                        }
-                    }, id: idBus });
-                    break;
-                }
-            };
-            res.render('register', { errors: errors.mapped(), oldData: datos, id: idBus })
-        }
-
-
+                    .then(function(resultado) {
+                        res.redirect('/users/login');
+                    })
+            })
     },
     login: (req, res) => {
         let idBuscado = null;
