@@ -9,15 +9,18 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
+        <th scope="col">Rol</th>
         <th scope="col">E-Mail</th>
         <th scope="col">Nacionalidad</th>
+        <th scope="col">Imágen</th>
       </tr>
     </thead>
     <tbody>
       <% for( let o of users ) { %>
         <tr>
           <th scope="row"><%= o.id %></th>
-          <td><%= o.name %></td>
+          <td><%= o.nombre %></td>
+          <td><%= o.rol.nombre %></td>
           <td><%= o.email %></td>
           <td><%= o.pais %></td>
           <td><img src="/images/users/<%= o.image %>" alt="imagen-usuario"></td>
@@ -27,11 +30,7 @@
                 <button class="btn btn-sm btn-dark">Borrar</button>
               </form>
             </td>
-          <% } else { %>
-            <td>
-              <button class="btn btn-sm btn-dark">Agregar al carrito</button>
-            </td>
-          <% } %> 
+          <% } %>
         </tr>
       <% } %>
     </tbody>

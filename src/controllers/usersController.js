@@ -24,7 +24,12 @@ const controller = {
         res.render('userDetail', {title: 'Perfil de Usuario'})
     },
     list: (req, res) => {
-        res.render('users', {users: users, title: 'Listado de Usuarios'});
+        db.Persona.findAll({
+            include: [{association: 'rol'}]
+        })
+            .then(function(users) {
+                res.render('users', {title: 'Listado de Usuarios', users})
+            })
     },
     register: (req, res) => {
         let idBus = null;
