@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('partials/head', {title: 'Registro'}) %>
+    <%- include('partials/head', {title: 'Edicion de usuario'}) %>
 <body>
     <%- include('partials/header')  %>
     <div class="margen-navbar">
@@ -14,8 +14,8 @@
           <input type="password" class="form-control" name="pass" id="pass">
         </div>
         <div class="col-12">
-          <label for="name" class="form-label">Nombre Completo</label>
-          <input type="text" class="form-control" name="name" id="name" value="<%= usuario.name %>">
+          <label for="nombre" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" name="nombre" id="nombre" value="<%= usuario.nombre %>">
         </div>
         <div class="col-6">
           <label for="direccion" class="form-label">Dirección</label>

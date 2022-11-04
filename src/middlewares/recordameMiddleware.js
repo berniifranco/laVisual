@@ -9,11 +9,9 @@ const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 function recordameMiddleware (req, res, next) {
     if (req.cookies.recordame != undefined && req.session.usuarioLogueado == undefined) {
 
-        let usuarioALoguearse;
-
         db.Persona.findByPk(req.cookies.recordame)
             .then(function(usuario) {
-                console.log(usuario)
+                req.session.usuarioLogueado = usuario.dataValues;
             })
 
         /*for (let o of users) {
@@ -22,8 +20,6 @@ function recordameMiddleware (req, res, next) {
                 break;
             }
         };*/
-
-        req.session.usuarioLogueado = usuarioALoguearse;
 
     };
 

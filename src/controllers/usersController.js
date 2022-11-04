@@ -21,7 +21,10 @@ function generarId () {
 
 const controller = {
     detail: (req, res) => {
-        res.render('userDetail', {title: 'Perfil de Usuario'})
+        db.Persona.findByPk(req.params.id)
+            .then(function(usuario) {
+                res.render('userDetail', {title: 'Perfil de Usuario', usuario})
+            })
     },
     list: (req, res) => {
         db.Persona.findAll({
@@ -114,16 +117,11 @@ const controller = {
         res.redirect('/');
     },
     edit: (req, res) => {
-        let idBuscado = req.params.id;
-        let userB = null;
-        for (let o of users) {
-            if(o.id == idBuscado) {
-                userB = o;
-                break;
-            };
-        };
 
-        res.render('form-edit-user', { usuario: userB, id:idBuscado })
+        db.Persona.findByPk(req.params.id)
+            .then(function(usuario) {
+                res.render('form-edit-user', { usuario})
+            });
     },
     update: (req, res) => {
         let idBus = req.params.id;
