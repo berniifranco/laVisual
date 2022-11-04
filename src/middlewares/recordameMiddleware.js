@@ -11,12 +11,17 @@ function recordameMiddleware (req, res, next) {
 
         let usuarioALoguearse;
 
-        for (let o of users) {
+        db.Persona.findByPk(req.cookies.recordame)
+            .then(function(usuario) {
+                console.log(usuario)
+            })
+
+        /*for (let o of users) {
             if (req.cookies.recordame == o.email) {
                 usuarioALoguearse = o;
                 break;
             }
-        };
+        };*/
 
         req.session.usuarioLogueado = usuarioALoguearse;
 

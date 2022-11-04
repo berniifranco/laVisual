@@ -7,16 +7,6 @@ const { validationResult } = require('express-validator');
 
 let db = require('../database/models');
 
-function generarIdProd () {
-    let nuevoId;
-    if (ferreteria.length != 0) {
-        nuevoId = (ferreteria[ferreteria.length-1].id)+1;
-    } else {
-        nuevoId = 1;
-    };
-    return nuevoId;
-};
-
 const controller = {
     ferreteria: (req, res) => {
         let idUser = null;
@@ -33,6 +23,7 @@ const controller = {
 
                 for (producto of productos) {
                     let objAux = {
+                        id: producto.id,
                         nombre: producto.nombre,
                         precio: producto.precio,
                         cantidad: producto.cantidad,
@@ -53,13 +44,6 @@ const controller = {
             .then(function(categorias) {
                 res.render('product-create-form', {categorias})
             })
-        /*let idUser = null;
-
-        if (req.session.usuarioLogueado != undefined) {
-            idUser = req.session.usuarioLogueado.id;
-        };
-
-        res.render('product-create-form', { id: idUser })*/
     },
     store: (req, res) => {
         db.Persona.findOne({
@@ -115,11 +99,18 @@ const controller = {
 
     },
     delete: (req, res) => {
-        let idBus = req.params.id;
-
         let imageX;
+
+        db.Producto.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(function() {
+                res.redirect('/products/ferreteria');
+            })
         
-        let nuevaLista = ferreteria.filter(function(e) {
+        /*let nuevaLista = ferreteria.filter(function(e) {
             return e.id != idBus
         });
 
@@ -132,9 +123,8 @@ const controller = {
 
         fs.unlinkSync(path.join(__dirname, '../../public/images/products', imageX));
 
-        fs.writeFileSync(ferreteriaFilePath, JSON.stringify(nuevaLista, null, 4), 'utf-8');
+        fs.writeFileSync(ferreteriaFilePath, JSON.stringify(nuevaLista, null, 4), 'utf-8');*/
 
-        res.redirect('/products/ferreteria');
     }
 };
 
