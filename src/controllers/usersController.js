@@ -149,7 +149,15 @@ const controller = {
 
     },
     destroy: (req, res) => {
-        let idX = req.params.id;
+        db.Persona.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(function() {
+                res.redirect('/')
+            })
+        /*let idX = req.params.id;
         let imgBorrar;
 
         let nuevaListaUsers = users.filter(function(e) {
@@ -170,7 +178,7 @@ const controller = {
 
         fs.writeFileSync(usersFilePath, JSON.stringify(nuevaListaUsers, null, 4), 'utf-8');
 
-        res.redirect('/');
+        res.redirect('/');*/
 
     }
 }

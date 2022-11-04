@@ -6,48 +6,40 @@
     <div class="margen-navbar">
       <form action="/products/create" method="POST" class="row g-3" enctype="multipart/form-data">
         <div class="col-md-6">
-          <label for="name" class="form-label">Nombre</label>
-          <input type="name" class="form-control <%= locals.errors && errors.name ? 'is-invalid' : null %>" name="name" id="name" value="<%= locals.oldData && oldData.name ? oldData.name : null %>">
-          <% if (locals.errors && errors.name) { %>
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="nombre" class="form-control <%= locals.errors && errors.nombre ? 'is-invalid' : null %>" name="nombre" id="nombre" value="<%= locals.oldData && oldData.name ? oldData.name : null %>">
+          <% if (locals.errors && errors.nombre) { %>
             <h5 class="text-danger">
-              <%= errors.name.msg %> 
+              <%= errors.nombre.msg %> 
             </h5>
           <% } %>
         </div>
         <div class="col-6">
-          <label for="price" class="form-label">Precio</label>
-          <input type="number" class="form-control <%= locals.errors && errors.price ? 'is-invalid' : null %>" name="price" id="price" value="<%= locals.oldData && oldData.price ? oldData.price : null %>">
-          <% if (locals.errors && errors.price) { %>
+          <label for="precio" class="form-label">Precio</label>
+          <input type="number" class="form-control <%= locals.errors && errors.price ? 'is-invalid' : null %>" name="precio" id="precio" value="<%= locals.oldData && oldData.price ? oldData.price : null %>">
+          <% if (locals.errors && errors.precio) { %>
             <h5 class="text-danger">
-              <%= errors.price.msg %> 
+              <%= errors.precio.msg %> 
             </h5>
           <% } %>
         </div>
         <div class="col-6">
-          <label for="stock" class="form-label">Cantidad</label>
-          <input type="number" class="form-control <%= locals.errors && errors.stock ? 'is-invalid' : null %>" name="stock" id="stock" value="<%= locals.oldData && oldData.stock ? oldData.stock : null %>">
-          <% if (locals.errors && errors.stock) { %>
+          <label for="cantidad" class="form-label">Cantidad</label>
+          <input type="number" class="form-control <%= locals.errors && errors.cantidad ? 'is-invalid' : null %>" name="cantidad" id="cantidad" value="<%= locals.oldData && oldData.stock ? oldData.stock : null %>">
+          <% if (locals.errors && errors.cantidad) { %>
             <h5 class="text-danger">
-              <%= errors.stock.msg %> 
+              <%= errors.cantidad.msg %> 
             </h5>
           <% } %>
         </div>
         <div class="col-6">
-          <label for="tipo" class="form-label">Tipo</label>
-          <select name="tipo" id="tipo" class="form-select">
-            <option>Elige...</option>
-            <option>Ferretería</option>
-            <option>Electricidad</option>
+          <label for="id_categoria" class="form-label">Tipo</label>
+          <select name="id_categoria" id="id_categoria" class="form-select">
+            <option value="" disabled selected>Elije categoría</option>
+            <% categorias.forEach(categoria => { %>
+              <option value="<%= categoria.id %>"><%= categoria.nombre %></option>
+            <% }) %> 
           </select>
-        </div>
-        <div class="col-12">
-          <label for="image" class="form-label">Imagen</label>
-          <input type="file" class="form-control <%= locals.errors && errors.image ? 'is-invalid' : null %>" name="image" id="image" accept="image/*">
-          <% if (locals.errors && errors.image) { %>
-            <h5 class="text-danger">
-              <%= errors.image.msg %>
-            </h5>
-          <% } %>
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Crear</button>

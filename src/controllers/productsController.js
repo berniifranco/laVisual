@@ -49,16 +49,40 @@ const controller = {
             })
     },
     create: (req, res) => {
-        let idUser = null;
+        db.Categoria.findAll()
+            .then(function(categorias) {
+                res.render('product-create-form', {categorias})
+            })
+        /*let idUser = null;
 
         if (req.session.usuarioLogueado != undefined) {
             idUser = req.session.usuarioLogueado.id;
         };
 
-        res.render('product-create-form', { id: idUser })
+        res.render('product-create-form', { id: idUser })*/
     },
-    store: async(req, res) => {
-        let datos = req.body;
+    store: (req, res) => {
+        db.Persona.findOne({
+            where: {
+                id: req.session.usuarioLogueado.id
+            }
+        })
+            .then(function(usuario) {
+                db.Producto.create({
+                    nombre: req.body.nombre,
+                    precio: req.body.precio,
+                    cantidad: req.body.cantidad,
+                    id_persona: usuario.id,
+                    id_categoria: req.body.id_categoria
+                })
+                    .then(function() {
+                        res.redirect('/products/ferreteria')
+                    })
+            })
+                .catch(function(error) {
+                    res.send(error)
+                })
+        /*let datos = req.body;
         let errors = validationResult(req);
 
         let idUser = null;
@@ -87,7 +111,7 @@ const controller = {
             res.redirect('/products/ferreteria');
         } else {
             res.render('product-create-form', { errors: errors.mapped(), id: idUser, oldData: datos })
-        }
+        }*/
 
     },
     delete: (req, res) => {
