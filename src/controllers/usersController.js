@@ -90,7 +90,9 @@ const controller = {
                     } else {
                         req.session.usuarioLogueado = usuarioALoguearse;
 
-                        res.cookie('recordame', usuarioALoguearse, {maxAge: ((((1000 * 60) * 60) * 24) * 30)})
+                        if (datos.recordame != undefined) {
+                            res.cookie('recordame', usuarioALoguearse.id, {maxAge: ((((1000 * 60) * 60) * 24) * 30)})
+                        }
 
                         res.redirect('/');
                     }
